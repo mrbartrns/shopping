@@ -21,6 +21,8 @@ function App() {
   );
 }
 
+// display navbar
+// todo: correct navbar link href
 function NavbarWrapper() {
   return (
     <Navbar bg="light" expand="lg">
@@ -72,17 +74,23 @@ function ShoesContainer(props) {
       <div className="row">
         {/* 3등분하는법 -> col-md-4 내부에 넣고싶은것 넣기 */}
         {props.shoes.map((data) => {
-          return (
-            <div className="col-md-4" key={data.id}>
-              <img src={data.img ? data.img : null} />
-              <h4>{data.title}</h4>
-              <p>
-                {data.content} <span className="shoes-price">{data.price}</span>
-              </p>
-            </div>
-          );
+          return <ShoesWrapper data={data} />;
         })}
       </div>
+    </div>
+  );
+}
+
+// 계속 상속하여 컴포넌트 구성도 가능
+function ShoesWrapper(props) {
+  return (
+    <div className="col-md-4" key={props.data.id}>
+      <img src={props.data.img ? props.data.img : null} />
+      <h4>{props.data.title}</h4>
+      <p>
+        {props.data.content}
+        <span className="shoes-price">{props.data.price}</span>
+      </p>
     </div>
   );
 }
